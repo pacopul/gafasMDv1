@@ -21,12 +21,6 @@ npm run dev
 
 Vite mostrará en la terminal la dirección local para abrir la aplicación. Los otros comandos disponibles son:
 
-```bash
-npm run build    # Genera la versión de producción en dist/
-npm run preview  # Sirve localmente la compilación de producción
-npm run lint     # Ejecuta ESLint
-```
-
 ## Estructura del proyecto
 
 ```text
