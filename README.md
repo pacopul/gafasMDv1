@@ -137,12 +137,9 @@ La diferencia, por tanto, es `[]` en Marcas frente a `[idmarca]` en Gafas. En el
 
 Las dos funciones son `async`. Usan `await` para esperar la respuesta de `fetch` y para convertirla a JSON. Antes de procesar el JSON comprueban `respuesta.ok`; si la respuesta HTTP indica un error, lanzan una excepción con un mensaje. En las páginas, `.catch()` recibe el fallo y guarda su mensaje en `error`. `.finally()` se ejecuta tanto si la petición tiene éxito como si falla, y pone `cargando` a `false`.
 
-El renderizado de cada página comprueba los estados en este orden:
+### Renderizado condicional en las páginas
 
-1. Si `cargando` es `true`, muestra el spinner y el texto de carga.
-2. Si existe `error`, muestra una alerta con el mensaje.
-3. Si el array no contiene elementos, muestra el mensaje de que no hay marcas o gafas disponibles.
-4. Si hay datos, los recorre con `.map()` y renderiza sus tarjetas. `key={marca.id}` y `key={gafa.id}` permiten a React identificar cada elemento de la lista.
+`Marcas.jsx` y `Gafas.jsx` utilizan el operador lógico `&&` para mostrar contenido solo cuando se cumple una condición. En JSX, la forma `{condicion && (contenido)}` hace que React renderice `contenido` si la condición es verdadera. Por ejemplo, `{cargando && (...)}` muestra el spinner mientras se cargan los datos; también se usa para mostrar los errores y los mensajes cuando no hay marcas o gafas disponibles. Las tarjetas se generan recorriendo los arrays con `.map()`, y `key={marca.id}` y `key={gafa.id}` permiten a React identificar cada elemento de la lista.
 
 ## Componentes de interfaz
 
