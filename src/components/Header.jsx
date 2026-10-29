@@ -13,7 +13,7 @@ export default function Header() {
       </nav>
       <img
         src={headerImage}
-        alt="Modelos luciendo gafas de sol"
+        alt="Pareja de guapos"
         className="d-block w-100"
       />
     </header>

@@ -20,7 +20,7 @@ export default function Gafas() {
   // nuevas gafas.
   // Eso lo hemos conseguido poniendo [idmarca]
   // en el array de dependencias del useEffect
-  
+
   useEffect(() => {
     setCargando(true);
     getGafasByMarca(idmarca)
@@ -31,23 +31,22 @@ export default function Gafas() {
       .finally(() => setCargando(false));
   }, [idmarca]);
 
-  if (cargando) return (
-    <div className="container py-4">
-      <div className="d-flex align-items-center gap-2" role="status">
-        <span className="spinner-border spinner-border-sm text-primary" aria-hidden="true"></span>
-        <span>Cargando gafas...</span>
-      </div>
-    </div>
-  );
-  if (error) return <div className="container py-4"><p className="alert alert-danger">Error: {error}</p></div>;
-  if (gafas.length === 0) return <div className="container py-4"><p>No hay gafas disponibles para esta marca.</p></div>;
-
   return (
     <main className="container py-4">
       <Link to="/" className="btn btn-outline-secondary btn-sm mb-3">
         ← Volver a marcas
       </Link>
       <h2 className="mb-4">Gafas {marca ? marca.nombre : `de la marca ${idmarca}`}</h2>
+      {cargando && (
+        <div className="d-flex align-items-center gap-2" role="status">
+          <span className="spinner-border spinner-border-sm text-primary" aria-hidden="true"></span>
+          <span>Cargando gafas...</span>
+        </div>
+      )}
+      {error && <p className="alert alert-danger">Error: {error}</p>}
+      {gafas.length === 0 && (
+        <p>No hay gafas disponibles para esta marca.</p>
+      )}
       <div className="row g-3 justify-content-center">
         {gafas.map((gafa) => (
           <div key={gafa.id} className="col-6 col-md-4 col-lg-3">
